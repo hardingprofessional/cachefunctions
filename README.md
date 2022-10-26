@@ -146,23 +146,26 @@ For a function to be a good candidate for use with this package:
 The following enhancements are possible, but I'll only implement them if needed.
 
 cache file formats:
-[x] pickle
-[ ] sqlite
-[ ] json
-[ ] xml
-[ ] csv
-[ ] xlsx
+
+- [x] pickle
+- [ ] sqlite
+- [ ] json
+- [ ] xml
+- [ ] csv
+- [ ] xlsx
 
 cache properties
-[ ] maxentries
-[ ] maxbytes
-[ ] maxseconds
+
+- [ ] maxentries
+- [ ] maxbytes
+- [ ] maxseconds
 
 cache methods
-[ ] purgekey
-[ ] purgekeys (lambda)
-[ ] getkey
-[ ] getkeys (lambda)
+
+- [ ] purgekey
+- [ ] purgekeys (lambda)
+- [ ] getkey
+- [ ] getkeys (lambda)
 
 I am *not* planning to store cached data in a memory object alternative to a dictionary.
 This is a performance bottleneck, yes, but the alternative is to build something clever in C and code up a ctypes interface.
