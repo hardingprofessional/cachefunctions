@@ -6,6 +6,10 @@ If you want to cache a function and save the cache to disk, use this package.
 
 If you want to cache a function but don't want to save the cache to disk, use `functools.cache` or `functools.lru_cache`.
 
+# Installation
+
+This isn't currently on Pypi, so to use this module just clone the repo and copy the cachefunctions folder into your project and use it as a sub-module.
+
 # What is Caching?
 
 Consider the following function:
