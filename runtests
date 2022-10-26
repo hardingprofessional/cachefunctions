@@ -1,0 +1,2 @@
+#! /bin/bash
+/usr/bin/env python3 -X pycache_prefix="data/__pycache__" -m unittest discover -v test
