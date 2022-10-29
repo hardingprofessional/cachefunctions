@@ -1,5 +1,5 @@
 """
-
+This module contains the cachefunction() decorator and the CacheFunction() decorator class. The purpose of these cache objects is to support generic function caching with a save-to-disk feature.
 """
 
 import pickle as pkl
@@ -25,10 +25,10 @@ def dict2tuple(di:dict) -> tuple :
     return tuple([(key, value) for key,value in sorted(di.items(), key=lambda x: x[0])])
 
 
-def functioncache(fun:TypeGenericFunction, fname:TypeStrPath) -> TypeGenericFunction:
+def cachefunction(fun:TypeGenericFunction, fname:TypeStrPath) -> TypeGenericFunction:
     """
     Simple decorator.
-    Rather than making the user manage a FunctionCache object, this simple decorator allows you to just specify a file name and go. It uses the FunctionCache object under-the-hood, and those features are not accessible to the developer. For access to the full feature set, use the class based decorator pattern.
+    Rather than making the user manage a FunctionCache object, this simple decorator allows you to just specify a file name and go. It uses the FunctionCache object under-the-hood, and those features are not accessible through this decorator function. For access to the full feature set, use the class based decorator pattern.
 
     :param fun: function to decorate
     :param fname: file to store cache in at runtime exit

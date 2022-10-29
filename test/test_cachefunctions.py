@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from cachefunctions import FunctionCache, functioncache
+from cachefunctions import FunctionCache, cachefunction 
 from os import unlink
 from os.path import exists
 import unittest
@@ -89,7 +89,7 @@ class TestCacheFunction(unittest.TestCase):
         slowfunctionsettings['sleeptime'] = 0.25
 
         # decorate the slowfunction using functional syntax
-        slowfunction = functioncache(slowfunction, fpath)
+        slowfunction = cachefunction(slowfunction, fpath)
 
         # run 10x with inputs (1,2)
         tic = pc()

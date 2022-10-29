@@ -10,6 +10,13 @@ If you want to cache a function but don't want to save the cache to disk, use `f
 
 This isn't currently on Pypi, so to use this module just clone the repo and copy the cachefunctions folder into your project and use it as a sub-module.
 
+```
+...yourproject/
+    cachefunctions/
+        __init__.py
+    yourscript.py #from cachefunctions import FunctionCache
+```
+
 # What is Caching?
 
 Consider the following function:
@@ -67,7 +74,7 @@ myfunction(1,2) #pulled from cache
 
 # Why use this package
 
-Python's built in caches don't save to disk! You can speed up a single run of your script, but you cannot save that cache and use it to accelerate a subsequent run of the same script.
+Python's built in caches don't save to disk. You can speed up a single run of your script, but you cannot save that cache and use it to accelerate a subsequent run of the same script.
 
 This package gives you the ability to create a cache file and save to it to disk, which may accelerate subsequent runs of your script.
 
@@ -89,8 +96,8 @@ This package also offers a class based API for creating and configuring function
 ``` python
 from cachefunctions import CacheFunction
 
-cf = CacheFunction("cachefile.pkl")
-@cf.decorator
+fc = FunctionCache("cachefile.pkl")
+@fc.decorator
 def myfunction(a,b):
     return a+b
 # runtime takes 10 seconds on first run
@@ -126,7 +133,7 @@ if __name__ == "__main__":
     # This function runs slowly because I am developing it
     nearestapproach = calculatenearestapproach(keplerianelements, 'ISS')
 
-    # I usually remove all caching decorators before delivering a product
+    # I usually remove all caching decorators before delivering a product unless cache management is a part of the design.
 ```
 
 # Requirements
@@ -144,6 +151,16 @@ For a function to be a good candidate for use with this package:
 
 1. The function must be called many times, with subsequent calls costing a significant amount of time.
 2. The function must be called in subsequent runs of the python script. If (2) is not fulfilled, use functools.cache instead.
+
+# FAQs
+
+## Why name the class `FunctionCache` and the decorator `cachefunction`?
+
+Classes should have "noun" type names, and decorators should be more adjective-y. 
+
+# License
+
+MIT licensed. I don't care how you use my code, just don't sue me. If you have questions/comments/concerns, you can let me know through the github repo.
 
 # Future
 
@@ -170,6 +187,9 @@ cache methods
 - [ ] purgekeys (lambda)
 - [ ] getkey
 - [ ] getkeys (lambda)
+
+architectural improvements
+- [ ] add safe, asyncronous access to cache, asyncio?
 
 I am *not* planning to store cached data in a memory object alternative to a dictionary.
 This is a performance bottleneck, yes, but the alternative is to build something clever in C and code up a ctypes interface.
