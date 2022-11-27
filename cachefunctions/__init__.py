@@ -69,6 +69,8 @@ class FunctionCache:
     from slowfunction import slowfunction
     slowfunction = myfunccache.decorator(slowfunction)
     """
+    # prevent the `open` builtin from being garbage collected before this class
+    open = open
 
     def __init__(self, fpath:TypeStrPath):
         """
@@ -156,7 +158,7 @@ class FunctionCache:
     
     def save(self) -> None:
         """ saves the cache to self.fpath """
-        with open(self.fpath, 'wb') as f:
+        with self.open(self.fpath, 'wb') as f:
             pkl.dump(self._cache, f)
 
     def __del__(self) -> None:
