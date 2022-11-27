@@ -89,7 +89,11 @@ class TestCacheFunction(unittest.TestCase):
         slowfunctionsettings['sleeptime'] = 0.25
 
         # decorate the slowfunction using functional syntax
-        slowfunction = cachefunction(slowfunction, fpath)
+        # I'd have liked to have had this:
+        # @cachefunction(fpath)
+        # def slowfunction(...): ...
+        # but that doesn't work on imported functions
+        slowfunction = cachefunction(fpath)(slowfunction)
 
         # run 10x with inputs (1,2)
         tic = pc()

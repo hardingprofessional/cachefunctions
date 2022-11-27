@@ -24,8 +24,7 @@ def dict2tuple(di:dict) -> tuple :
     """
     return tuple([(key, value) for key,value in sorted(di.items(), key=lambda x: x[0])])
 
-
-def cachefunction(fun:TypeGenericFunction, fname:TypeStrPath) -> TypeGenericFunction:
+def cachefunction(fname:TypeStrPath) -> TypeGenericFunction:
     """
     Simple decorator.
     Rather than making the user manage a FunctionCache object, this simple decorator allows you to just specify a file name and go. It uses the FunctionCache object under-the-hood, and those features are not accessible through this decorator function. For access to the full feature set, use the class based decorator pattern.
@@ -34,10 +33,12 @@ def cachefunction(fun:TypeGenericFunction, fname:TypeStrPath) -> TypeGenericFunc
     :param fname: file to store cache in at runtime exit
     :return: The same function, but with caching enabled
     """
-    # init function class object
-    fc = FunctionCache(fname)
-    # return decorated function
-    return fc.decorator(fun)
+    def wrap(fun:TypeGenericFunction) -> TypeGenericFunction:
+        # init function class object
+        fc = FunctionCache(fname)
+        # return decorated function
+        return fc.decorator(fun)
+    return wrap
 
 # classes
 class FunctionCache:
